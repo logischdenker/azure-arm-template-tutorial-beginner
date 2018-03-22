@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "webAppName": {
+        "type": "string"
+      }
+     },
+    "variables": { },
+    "resources": [ 
+      {
+        "apiVersion": "2017-08-01",
+        "type": "Microsoft.Web/serverfarms",
+        "kind": "app",
+        "name": "MyAwesomeAppServicePlan",
+        "location": "West Europe",
+        "sku": {
+          "name": "F1",
+          "tier":"Free"     
+        },
+        "properties": {}        
+      },
+      {
+        "apiVersion": "2016-08-01",
+        "type": "Microsoft.Web/sites",
+        "kind": "app",
+        "name": "[parameters('webAppName')]",
+        "location": "West Europe",
+        "properties": {
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'MyAwesomeAppServicePlan')]"
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/serverfarms', 'MyAwesomeAppServicePlan')]"
+        ]
+      }
+    ],
+    "outputs": { }
+  }
