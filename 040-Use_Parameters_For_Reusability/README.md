@@ -14,7 +14,7 @@ In this example we se a new parameter named `webAppName` of type `string`. There
 
 Not defining any default value for a parameter will any deployment method automatically ask for the values of the parameter.
 
-Once the parameter has been defined it can be used anywhere in the template by just calling a JSON function - e.g. `[variables('webAppName')]`
+Once the parameter has been defined it can be used anywhere in the template by just calling a JSON function - e.g. `[parameters('webAppName')]`
 
 ## Set parameters through Powershell
 One way to set parameters is to pass them into the deployment by Powershell by just adding them to the call of the `New-AzureRmResourceGroupDeployment` cmdlet.
